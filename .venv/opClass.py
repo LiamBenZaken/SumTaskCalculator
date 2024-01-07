@@ -19,6 +19,8 @@ class MathUtility:
 
     @staticmethod
     def pow(x, y):
+        if x < 0 and -1 < y < 1:
+            raise ValueError("Not valid input")
         return x ** y
 
     @staticmethod
@@ -43,8 +45,8 @@ class MathUtility:
 
     @staticmethod
     def fuc(x):
-        if x % 1 != 0:
-            raise ValueError("the number cannot be a real number")
+        if x < 0 or x % 1 != 0 or x > 150:
+            raise ValueError("Cannot calculate fucturial for this number")
         if x == 0 or x == 1:
             return 1
         else:

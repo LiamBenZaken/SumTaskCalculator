@@ -1,20 +1,33 @@
+OPERATORS = ['+', '-', '*', '/', '(', ')', '^', '%', '@', '&', '$', '~', '!']
+
+
 def stringToList(string: str) -> list:
-    valid_list = []
-    current_element = ""
-    for i, char in enumerate(string):
-        if char.isdigit() or (char == '-' and (i == 0 or expression[i - 1] in ('+', '-', '*', '/', '('))):
-            current_element += char
-        elif char == '.':
-            current_element += char
-        elif char in ('(', ')', '+', '-', '*', '/'):
-            if current_element:
-                valid_list.append(float(current_element))
-                current_element = ""
-            valid_list.append(char)
+    lst = []
+    current = ""
+    negflag = 1
+    i=0
+
+    for char in string:
+        if char.isdigit() or (char == '.' and current and current[-1].isdigit()):
+            current += char
+        elif char == '-' and (not current or current[-1] in OPERATORS):
+            negflag *= -1
+        elif char in OPERATORS:
+            if current:
+                if char == '~' and ((i + 1 < len(string) and string[i + 1] in OPERATORS) or len(string) == i+1):
+                    raise ValueError("Not valid input")
+                lst.append(negflag * float(current))
+                current = ""
+                negflag = 1
+            lst.append(char)
         elif char != ' ':
-            current_element += char
+            current += char
+        i+=1
 
-    if current_element:
-        valid_list.append(float(current_element))
+    if current:
+        lst.append(negflag * float(current))
 
-    return valid_list
+    return lst
+
+
+
