@@ -20,7 +20,7 @@ class MathUtility:
     @staticmethod
     def pow(x, y):
         if x < 0 and -1 < y < 1:
-            raise ValueError("Not valid input")
+            raise ValueError("ValueError: Not valid input")
         return x ** y
 
     @staticmethod
@@ -45,9 +45,9 @@ class MathUtility:
 
     @staticmethod
     def fuc(x):
-        if x < 0 or x % 1 != 0 or x > 150:
+        if x < 0 or x % 1 != 0:
             raise ValueError("Cannot calculate fucturial for this number")
-        if x == 0 or x == 1:
-            return 1
-        else:
-            return MathUtility.fuc(x - 1) * x
+        func = 1
+        for i in range(1, int(x + 1)):
+            func *= i
+        return func

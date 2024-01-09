@@ -1,9 +1,6 @@
-from calls import *
-from input import *
-
-OPERATORS = ['+', '-', '*', '/', '(', ')', '^', '%', '@', '&', '$', '~', '!']
-PRIORITY = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3, '%': 4, '@': 5, '&': 5, '$': 5, '~': 6, '!': 6}
-UNARY = ['!', '~']
+from calls import checkUnaryOP, checkBinaryOP
+from input import stringToList
+from const import OPERATORS, PRIORITY, UNARY
 
 
 def inifxToPostfix(string: str) -> list:
@@ -22,6 +19,8 @@ def inifxToPostfix(string: str) -> list:
             stack.pop()
         else:
             while stack and stack[-1] != '(' and PRIORITY[item] <= PRIORITY[stack[-1]]:
+                if ((item == '!' or item == '^') and stack[-1] == 'm'):
+                    break;
                 lstpost.append(stack.pop())
             stack.append(item)
     while stack:
@@ -36,12 +35,12 @@ def calculator(string: str):
     for item in lst:
         if item in OPERATORS and item in UNARY:
             if not stack:
-                raise ValueError("Not valid input")
+                raise ValueError("ValueError: Not valid input")
             op = stack.pop()
             stack.append(checkUnaryOP(item, op))
         elif item in OPERATORS and item not in UNARY:
             if len(stack) < 2:
-                raise ValueError("Not valid input")
+                raise ValueError("ValueError: Not valid input")
             op2 = stack.pop()
             op1 = stack.pop()
             stack.append(checkBinaryOP(op1, item, op2))
@@ -49,9 +48,11 @@ def calculator(string: str):
             stack.append(item)
 
     if len(stack) != 1:
-        raise ValueError("Not valid input")
+        raise ValueError("ValueError: Not valid input")
 
     num = stack.pop()
+    if num > pow(10, 20):
+        return num;
     if num % 1 == 0:
         return int(num)
     return num
