@@ -1,6 +1,6 @@
 from calls import checkUnaryOP, checkBinaryOP
 from input import stringToList
-from const import OPERATORS, PRIORITY, UNARY
+from const import OPERATORS, PRIORITY, UNARY , BEFOREMINUS
 
 
 def inifxToPostfix(string: str) -> list:
@@ -19,12 +19,14 @@ def inifxToPostfix(string: str) -> list:
             stack.pop()
         else:
             while stack and stack[-1] != '(' and PRIORITY[item] <= PRIORITY[stack[-1]]:
-                if ((item == '!' or item == '^') and stack[-1] == 'm'):
-                    break;
+                if (len(stack) == 1 and stack[-1] == 'm' and item in BEFOREMINUS) or (
+                        len(stack) >= 2 and stack[-2] == '(' and stack[-1] == 'm' and item in BEFOREMINUS):
+                    break
                 lstpost.append(stack.pop())
             stack.append(item)
     while stack:
         lstpost.append(stack.pop())
+    print(lstpost)
     return lstpost
 
 
@@ -51,7 +53,7 @@ def calculator(string: str):
         raise ValueError("ValueError: Not valid input")
 
     num = stack.pop()
-    if num > pow(10, 20):
+    if num > 10 ** 10 or num < -(10 ** 10):
         return num;
     if num % 1 == 0:
         return int(num)

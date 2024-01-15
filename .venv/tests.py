@@ -6,12 +6,11 @@ def main():
         try:
             string = input("enter what do u want to calculate:")
             print(calculator(string))
-            break
-        except ValueError as err:
+        except (ValueError, OverflowError, ArithmeticError) as err:
             print(err)
             print(" --------------------------------------- ")
-        except EOFError:
-            print("EOFError: no input received")
+        except (EOFError, KeyboardInterrupt) as err:
+            print(err)
             print(" --------------------------------------- ")
             break
 

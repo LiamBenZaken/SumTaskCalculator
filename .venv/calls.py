@@ -31,3 +31,5 @@ def checkUnaryOP(op: str, x: str):
             return MathUtility.fuc(x)
         case 'm':
             return MathUtility.neg(x)
+        case '#':
+            return MathUtility.concat(x)
