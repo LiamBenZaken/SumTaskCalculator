@@ -1,9 +1,19 @@
 from calls import checkUnaryOP, checkBinaryOP
 from input import stringToList
-from const import OPERATORS, PRIORITY, UNARY , BEFOREMINUS
+from const import OPERATORS, PRIORITY, UNARY, BEFOREMINUS
 
 
 def inifxToPostfix(string: str) -> list:
+    """
+        Method which convert infix mathematical expression to postfix notation using a stack-based approach,
+        handling operators, brackets, and special cases for unary operators.
+
+        Parameters:
+        - string (str): The infix mathematical expression to be converted.
+
+        Returns:
+        - list: A list representing the postfix notation of the input expression.
+    """
     lst = stringToList(string)
     lstpost = []
     stack = []
@@ -26,11 +36,20 @@ def inifxToPostfix(string: str) -> list:
             stack.append(item)
     while stack:
         lstpost.append(stack.pop())
-    print(lstpost)
     return lstpost
 
 
 def calculator(string: str):
+    """
+       Method which evaluates a mathematical expression and returns the result.
+
+       Parameters:
+       - string (str): The mathematical expression to be evaluated.
+
+       Returns:
+       - int or float: The result of the evaluation. It can be an integer or a float.
+       """
+
     lst = inifxToPostfix(string)
     stack = []
 

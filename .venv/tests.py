@@ -9,10 +9,11 @@ def main():
         except (ValueError, OverflowError, ArithmeticError) as err:
             print(err)
             print(" --------------------------------------- ")
-        except (EOFError, KeyboardInterrupt) as err:
-            print(err)
+        except (EOFError) as err:
+            print("EOF: bye")
             print(" --------------------------------------- ")
             break
+
 
 
 if __name__ == '__main__':

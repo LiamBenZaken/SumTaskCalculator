@@ -1,7 +1,18 @@
 from opClass import MathUtility
 
 
-def checkBinaryOP(x: float, op: str, y: float):
+def checkBinaryOP(x: float, op: str, y: float) -> float:
+    """
+    Method which perform a binary operation on two numbers.
+
+    Parameters:
+    - x (float): The first number.
+    - op (str): The binary operator.
+    - y (float): The second number.
+
+    Returns:
+    - float: The result of the binary operation.
+    """
     match op:
         case '+':
             return MathUtility.add(x, y)
@@ -23,7 +34,17 @@ def checkBinaryOP(x: float, op: str, y: float):
             return MathUtility.mod(x, y)
 
 
-def checkUnaryOP(op: str, x: str):
+def checkUnaryOP(op: str, x: str) -> float:
+    """
+    Method which perform a unary operation on a number.
+
+    Parameters:
+    - op (str): The unary operator to be applied.
+    - x (float): The operand.
+
+    Returns:
+    - float: The result of the unary operation.
+    """
     match op:
         case '~':
             return MathUtility.neg(x)
