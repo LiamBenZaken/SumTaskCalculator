@@ -73,12 +73,12 @@ class MathUtility:
         - float: The result of x raised to the power of y.
 
         Raises:
-        - ArithmeticError: If attempting to calculate the square of a negative number.
+        - ArithmeticError: If attempting to calculate the power of negative number with float number.
         - ArithmeticError: If attempting to calculate the power of 0 to a non-positive exponent.
         - OverflowError: If the result is too large to be represented as a float.
         """
-        if x < 0 and (-1 < y < 0 or 0 < y < 1):
-            raise ArithmeticError("ArithmeticError: cannot sqrt negative number")
+        if x < 0 and (y % 1 != 0):
+            raise ArithmeticError("ArithmeticError: cannot use pow on negative number with float exponent")
         if x == 0 and y <= 0:
             raise ArithmeticError(f"ArithmeticError: cannot pow {x} with {y} ")
         try:

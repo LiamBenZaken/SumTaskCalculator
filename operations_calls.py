@@ -1,4 +1,4 @@
-from opClass import MathUtility
+from operation_class import MathUtility
 
 
 def checkBinaryOP(x: float, op: str, y: float) -> float:
