@@ -1,4 +1,4 @@
-from checks import findUnaryPostErrors, findUnaryPreErrors, findBracketsErrors
+from errors_checks import findUnaryPostErrors, findUnaryPreErrors, findBracketsErrors
 from const import UNARY, OPERATORS, LEFT, RIGHT
 
 

@@ -11,4 +11,4 @@ OPERATORS = ['+', '-', '*', '/', '(', ')', '^', '%', '@', '&', '$', '~', '!', 'm
 PRIORITY = {'+': ONE, '-': ONE, '*': TWO, '/': TWO, '^': THREE, '%': FOUR, '@': FIVE, '&': FIVE, '$': FIVE, '~': SIX,
             '!': SIX, '#': SIX, 'm': MAX}
 UNARY = {'!': RIGHT, '~': LEFT, 'm': LEFT, '#': RIGHT}
-BEFOREMINUS = [operator for operator in PRIORITY if operator != 'm' and PRIORITY[operator]>TWO]
+BEFOREMINUS = [operator for operator in PRIORITY if operator != 'm' and PRIORITY[operator] > TWO]

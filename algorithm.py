@@ -1,4 +1,4 @@
-from calls import checkUnaryOP, checkBinaryOP
+from operations_calls import checkUnaryOP, checkBinaryOP
 from input import stringToList
 from const import OPERATORS, PRIORITY, UNARY, BEFOREMINUS
 
