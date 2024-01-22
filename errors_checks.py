@@ -13,7 +13,7 @@ def findUnaryPostErrors(char: str, string: str, i: int):
     Raises:
     - ValueError: If there is an error related to the placement of unary operators.
     """
-    if (i + 1 < len(string) and string[i + 1].isdigit()):
+    if i + 1 < len(string) and (string[i + 1].isdigit() or string[i + 1] == '('):
         raise ValueError(f"ValueError: Not valid input , incorrect syntax for the char:'{char}' ")
 
 
@@ -58,7 +58,8 @@ def findBracketsErrors(char: str, string: str, i: int):
           (i + 1 < len(string) and string[i + 1] not in UNARY and string[i + 1] != '-' and string[
               i + 1] in OPERATORS and string[i + 1] != '(')):
         raise ValueError("ValueError: unmatching value in the Brackets")
-    elif (char == ')' and ((i + 1 < len(string) and string[i + 1] not in OPERATORS) or
+    elif (char == ')' and ((i + 1 < len(string) and (string[i + 1] not in OPERATORS or (
+            string[i + 1] in OPERATORS and [string[i + 1]] == LEFT))) or
                            (i - 1 >= 0 and (string[i - 1] not in UNARY and string[i - 1] in OPERATORS and string[
                                i - 1] != ')')))):
         raise ValueError("ValueError: unmatching value in the Brackets")

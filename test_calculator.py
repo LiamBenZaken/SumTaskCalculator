@@ -4,14 +4,14 @@ from main import calculation
 
 
 @pytest.mark.parametrize("input_test, result", [
-    ("3+*1", "ValueError: Not valid input"),
+    ("3+*1", "ValueError: Not valid mathematical expression"),
     ("3..2", "ValueError: Not valid input: '.'"),
     ("!3", "ValueError: Not valid input , incorrect syntax for the char:'!' "),
     ("(-5)^-0.5", "ArithmeticError: cannot use pow on negative number with float exponent"),
     ("3----2!#", "ArithmeticError: Cannot calculate fucturial for this number"),
-    ("liamtheking", "ValueError: Not valid input: 'l'"),
-    ('', "ValueError: Not valid input"),
-    (' ', "ValueError: Not valid input"),
+    ("liam the king", "ValueError: Not valid input: 'l'"),
+    ('', "ValueError: Not valid mathematical expression"),
+    (' ', "ValueError: Not valid mathematical expression"),
     ("2.^:3", "ValueError: Not valid input: ':'"),
     ("5 + 3 * 2", 11),
     ("2+44", 46),

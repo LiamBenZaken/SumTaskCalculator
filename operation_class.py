@@ -140,6 +140,8 @@ class MathUtility:
         Returns:
         - float: The remainder of x divided by y.
         """
+        if y == 0:
+            raise ArithmeticError("ArithmeticError: Cannot divide by zero")
         return round(x % y, 10)
 
     @staticmethod
@@ -158,7 +160,7 @@ class MathUtility:
     @staticmethod
     def fuc(x: float) -> float:
         """
-        Returns the factorial of a non negative integer.
+        Returns the factorial of a no negative integer.
 
         Parameters:
         - x (float): The non-negative integer for calculate the factorial.
@@ -171,15 +173,17 @@ class MathUtility:
         """
         if x < 0 or x % 1 != 0:
             raise ArithmeticError("ArithmeticError: Cannot calculate fucturial for this number")
-        func = 1
+        func = 1.0
         for i in range(1, int(x + 1)):
+            if func == float("inf"):
+                return func
             func *= i
         return func
 
     @staticmethod
     def concat(x: float) -> float:
         """
-        Returns the sum of the digits of a non negative number.
+        Returns the sum of the digits of a no negative number.
 
         Parameters:
         - x (float): The non-negative number for which to calculate the digit sum.
@@ -189,12 +193,17 @@ class MathUtility:
 
         Raises:
         - ArithmeticError: If x is negative.
+        - OverflowError: If x is inf.
         """
         if x < 0:
             raise ArithmeticError("ArithmeticError: Cannot concat negative number")
+        if x == float("inf"):
+            raise OverflowError("OverflowError: too big number")
         x = str(x)
         sum = 0
         for i in range(len(x)):
+            if x[i] == 'e':
+                return sum
             if x[i].isdigit():
                 sum += int(x[i])
         return sum

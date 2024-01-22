@@ -60,7 +60,8 @@ def replaceToUnaryMinus(lst: list) -> list:
                 lst.insert(i, 'm')
             lst[i + 1] = lst[i + 1].replace('-', '')
         if (lst[i] == '-' and len(lst) > i + 1 and lst[i + 1] == '(' and (
-                ((i - 1 >= 0 and lst[i - 1] not in UNARY and lst[i - 1] in OPERATORS) or i == 0))):
+                ((i - 1 >= 0 and (lst[i - 1] not in UNARY or UNARY[lst[i - 1]] == LEFT) and lst[
+                    i - 1] in OPERATORS) or i == 0))):
             lst[i] = lst[i].replace('-', 'm')
     return lst
 
@@ -78,7 +79,7 @@ def stringToList(string: str) -> list:
 
     Raises:
     - ValueError: If there is an issue with the input string that doesnt connected to the specific errors
-      that i try to find in the findErrors methods.
+      that I try to find in the findErrors methods.
     """
     string = string.replace(" ", "").replace("\t", "").replace("\n", "")
     lst = []

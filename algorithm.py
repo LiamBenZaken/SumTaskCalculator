@@ -56,12 +56,12 @@ def calculator(string: str):
     for item in lst:
         if item in OPERATORS and item in UNARY:
             if not stack:
-                raise ValueError("ValueError: Not valid input")
+                raise ValueError("ValueError: Not valid mathematical expression")
             op = stack.pop()
             stack.append(checkUnaryOP(item, op))
         elif item in OPERATORS and item not in UNARY:
             if len(stack) < 2:
-                raise ValueError("ValueError: Not valid input")
+                raise ValueError("ValueError: Not valid mathematical expression")
             op2 = stack.pop()
             op1 = stack.pop()
             stack.append(checkBinaryOP(op1, item, op2))
@@ -69,7 +69,7 @@ def calculator(string: str):
             stack.append(item)
 
     if len(stack) != 1:
-        raise ValueError("ValueError: Not valid input")
+        raise ValueError("ValueError: Not valid mathematical expression")
 
     num = stack.pop()
     if num > 10 ** 10 or num < -(10 ** 10):
