@@ -193,12 +193,11 @@ class MathUtility:
 
         Raises:
         - ArithmeticError: If x is negative.
-        - OverflowError: If x is inf.
         """
         if x < 0:
             raise ArithmeticError("ArithmeticError: Cannot concat negative number")
         if x == float("inf"):
-            raise OverflowError("OverflowError: too big number")
+            return float("inf")
         x = str(x)
         sum = 0
         for i in range(len(x)):

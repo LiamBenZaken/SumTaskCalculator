@@ -23,9 +23,6 @@ def calculation(string: str):
     except (ValueError, OverflowError, ArithmeticError) as err:
         print(err)
         return str(err)
-    except EOFError:
-        print("EOF: bye")
-        return "EOF: bye"
 
 
 def main():
@@ -33,8 +30,12 @@ def main():
     Main - gets the mathematical expression from the user
     and use the calculator to get the answer for the provided input.
     """
-    string = input("enter what do u want to calculate:")
-    calculation(string)
+    try:
+        string = input("enter what do u want to calculate:")
+    except EOFError:
+        print("EOF: bye")
+    else:
+        calculation(string)
 
 
 if __name__ == '__main__':
